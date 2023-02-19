@@ -36,11 +36,35 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 	<link rel="stylesheet" href="w3-colors-flat.css">
 </head> 
 
-<script>
+<script> //this section is the CSS portion of the code that triggers specific actions
+	
+	var docMod = document.lastModified; //codes for a popup that shows when the file was last updated
+       		alert("This file last modified  " + docMod);
+       		console.log("This file last modified  " + docMod);
+	
 
-	//YOUR JAVASCRIPT GOES HERE
+  	var depression_count = 0; //defined the depression count variable. It is the number that depends on whether the respondent answers yes or no to the questions.
+        var anxiety_count = 0; //defined the anxiety count variable. It is the number that depends on whether the respondent answers yes or no to the questions.
 
-</script>	
+
+        function depressionAdd(){ //depressionAdd function that the yes and no buttons will summon, which will add to the depression count variable.
+            depression_count = depression_count + 1; //whenever this funtion occurs, the depression count will increase by one
+        }
+
+        function anxietyAdd(){ //anxietyAdd funtion that the yes and no buttons will summon, which will add to the anxiety count variable
+            anxiety_count = anxiety_count + 1; //whenever this function occurs, the anxiety count will increase by one
+        }
+	
+	function results(){ //this is the results funtion that when triggered, will compute the percentages of depression and anxiety.
+		
+		var depressionPercent = depression_count/4*100; //this is the math to calculate the depression percent based on the depression count
+		var anxietyPercent = anxiety_count/4*100; //the math to calculate the anxiety percent based on the anxiety count
+	
+	var resultText = document.getElementById("calculations");
+	resultText.innerHTML = "Probability it is depression =" + depressionPercent + "<br> Probability it is a anxiety =" + anxietyPercent; 	
+	} //replaces the paragraph with the id="calculations" with the depressionPercent and anxietyPercent variables that were triggered and calculated. 
+
+	</script> //closes the script portion
 
 
 <!-- THIS STYLE CODE HELPS MAKE YOUR APP LOOK GOOD. PROBABLY DONT MESS WITH IT -->
@@ -66,7 +90,90 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 }
 </style>
 
-<body>
+<body> 	<!-- this body portion essentially codes for all the content and visuals of the app -->
+<div id="header" class="w3-container w3-flat-carrot"> <!--this formats the header, its content/title, and its color-->
+	<h1>Depression or Anxiety?</h1>
+</div> <!--closes the header code section -->
+	
+<div id="content" class="w3-container"> <!--this section is the content of the page-->
+	<p>If you're feeling off and wondering if it is depression or anxiety, answer a few short questions to find out!</p> <!--first sentence, introduces purpose of survey -->
+	
+	<a href="#one" class="w3-btn w3-grey w3-round"> Get Started </a> <!--this codes for the button, including what it says and what it looks like, and where it leads to (to the next page, page one) -->
+	
+	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
+ 	
+	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL OR MENTAL CONDITION.</p>
+
+<div class="page" id="one"> <!--this section codes for page one that contains the first question. Gives the code section its identity -->
+	<div id="header" class="w3-container w3-flat-carrot"> <!-- formats the header, its content/title, and color-->
+		<h1>Question 1</h1>
+	</div>
+	
+    	<div id="content" class="w3-container"> <!--this section is the content of the page. This line starts the coding for it-->
+	<p>Do you feel hopeless or down?</p>  <!--content of question 1-->  
+	<a href="#two"  onclick="depressionAdd();" class="w3-btn w3-black"> Yes</a> <!--codes for the yes button, also codes so that it triggers the depressionAdd function which increases the depression count variable-->
+         	<a href="#two"  onclick="anxietyAdd();" class="w3-btn w3-black">No</a> <!--codes for the no button, also codes so that it triggers the anxietyAdd function which increases the anxiety count variable-->
+ </div><!-- closes the code section for page 1 -->
+
+</div>
+
+<div class="page" id="two"> <!--this section codes for page two that contains the second question. Gives the code section its identity -->
+	<div id="header" class="w3-container w3-flat-carrot"> <!-- formats the header, its content/title, and color-->
+		<h1>Question 2</h1>
+	</div>
+	
+	<div id="content" class="w3-container"> <!--this section is the content of the page. This line starts the coding for it-->
+	<p>Have you been feeling nervous and on edge?</p>    <!--content of question 2--> 
+	<a href="#three"  onclick="anxietyAdd();" class="w3-btn w3-black"> Yes</a> <!--codes for the yes button, also codes so that it triggers the anxietyAdd function which increases the anxiety count variable-->
+         	<a href="#three"  onclick="depressionAdd();" class="w3-btn w3-black">No</a> <!--codes for the no button, also codes so that it triggers the depressionAdd function which increases the depression count variable-->
+ </div><!-- closes the code section for page 2 -->
+
+</div>
+
+<div class="page" id="three"> <!--this section codes for page three that contains the third question. Gives the code section its identity -->
+	<div id="header" class="w3-container w3-flat-carrot"> <!-- formats the header, its content/title, and color-->
+		<h1>Question 3</h1>
+	</div>
+	
+	<div id="content" class="w3-container"> <!--this section is the content of the page. This line starts the coding for it-->
+	<p>Have you been experiencing a lack of interest or pleasure in doing things?</p>    <!--content of question 3--> 
+	<a href="#four"  onclick="depressionAdd();" class="w3-btn w3-black"> Yes</a> <!--codes for the yes button, also codes so that it triggers the depressionAdd function which increases the depression count variable-->
+         	<a href="#four"  onclick="anxietyAdd();" class="w3-btn w3-black">No</a> <!--codes for the no button, also codes so that it triggers the anxietyAdd function which increases the anxiety count variable-->
+ </div><!-- closes the code section for page 3 -->
+	
+</div>
+
+<div class="page" id="four"> <!--this section codes for page four that contains the fourth question. Gives the code section its identity -->
+	<div id="header" class="w3-container w3-flat-carrot"> <!-- formats the header, its content/title, and color-->
+		<h1>Question 4</h1> 
+	</div>
+	
+	<div id="content" class="w3-container"> <!--this section is the content of the page. This line starts the coding for it-->
+	<p>Are you experiencing physical symptoms such as muscle tensions, headaches, or sweating?</p>   <!--content of question 4-->  
+	<a href="#five"  onclick="anxietyAdd();" class="w3-btn w3-black"> Yes</a> <!--codes for the yes button, also codes so that it triggers the anxietyAdd function which increases the anxiety count variable-->
+         	<a href="#five"  onclick="depressionAdd();" class="w3-btn w3-black">No</a> <!--codes for the no button, also codes so for it to trigger the depressionAdd function which increases the depression count variable-->
+ </div><!-- closes the code section for page 4 -->
+	
+</div>
+	
+<div class="page" id="five"> <!--this section codes for the results page that contains the probabilities. Gives the code section its identity -->
+	<div id="header" class="w3-container w3-flat-carrot"> <!-- formats the header, its content/title, and color-->
+		<h1>Results</h1>
+	</div>
+	
+	<div id="content" class="w3-container"> <!--this section is the content of the page. This line starts the coding for it-->
+		<p id="calculations"></p> <!-- this is the paragraph with "calculations id that the function results() will replace with the resultText.innerHTML -->
+		<a href="#results"  onclick="results();" class="w3-btn w3-black"> Get Results Now</a> <!-- this codes for the get results now button. By clicking the button, it triggers the results() function so it can calculate and show the cold and allergy probabilies-->
+
+ </div><!-- closes the code section for the results page -->
+	
+</div> <!-- some more code section closes -->
+	
+</div>	
+
+<footer class="w3-bottom w3-container w3-flat-carrot"> <!-- codes for the footer and its content plus color -->
+	<p>DIY!</p>
+</footer>
 	
 	<!-- HERE IS WHERE ALL OF YOUR HTML PAGES GO -->
 	REPLACE THIS TEXT
